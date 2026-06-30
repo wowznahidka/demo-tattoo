@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INK LAB — Tattoo & Piercing</title>
+  <meta name="description" content="INK LAB — авторські татуювання та пірсинг. Реалізм, блекворк, геометрія, акварель. Стерильно. Назавжди." />
+
+  <!-- Google Fonts: Sora + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0d0d0d;
+      --bg2:      #111111;
+      --bg3:      #161616;
+      --card:     #1a1a1a;
+      --border:   #2a2a2a;
+      --red:      #e63946;
+      --red-dim:  #c1303c;
+      --white:    #ffffff;
+      --muted:    #888888;
+      --muted2:   #555555;
+      --font-h:   'Sora', sans-serif;
+      --font-b:   'Inter', sans-serif;
+      --radius:   12px;
+      --radius-lg: 20px;
+      --transition: 220ms ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--white);
+      font-family: var(--font-b);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Utility ──────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin-inline: auto;
+      padding-inline: clamp(20px, 5vw, 48px);
+    }
+
+    .section-label {
+      font-family: var(--font-h);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-h);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      margin-top: 12px;
+      max-width: 520px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-family: var(--font-h);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      border: none;
+      outline: none;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+    .btn-primary:hover {
+      background: var(--red-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(230, 57, 70, 0.35);
+    }
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 3px;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid var(--border);
+    }
+    .btn-ghost:hover {
+      border-color: var(--muted2);
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* ─── Noise texture overlay ────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    /* ─── NAV ──────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 18px 0;
+      border-bottom: 1px solid transparent;
+      transition: background var(--transition), border-color var(--transition);
+      background: rgba(13,13,13,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--border);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-h);
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .nav-cta { display: inline-flex; }
+    }
+
+    .nav-mobile-links { display: none; }
+
+    @media (max-width: 767px) {
+      .nav-links { display: none; }
+    }
+
+    /* ─── HERO ─────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding-top: 90px;
+      overflow: hidden;
+    }
+
+    /* Subtle diagonal lines texture */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 60px,
+        rgba(255,255,255,0.012) 60px,
+        rgba(255,255,255,0.012) 61px
+      );
+      pointer-events: none;
+    }
+
+    /* Red glow blob */
+    .hero-glow {
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: clamp(300px, 50vw, 700px);
+      height: clamp(300px, 50vw, 700px);
+      background: radial-gradient(circle, rgba(230,57,70,0.13) 0%, transparent 70%);
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(230,57,70,0.35);
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--red);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .hero-title {
+      font-family: var(--font-h);
+      font-size: clamp(3rem, 9vw, 7.5rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .hero-title .accent { color: var(--red); }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(24px, 4vw, 56px);
+      margin-top: clamp(48px, 8vw, 96px);
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-value {
+      font-family: var(--font-h);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--white);
+    }
+    .hero-stat-value span { color: var(--red); }
+
+    .hero-stat-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    /* ─── SECTION WRAPPER ──────────────────────────── */
+    .section {
+      padding: clamp(64px, 10vw, 120px) 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-head {
+      margin-bottom: clamp(36px, 5vw, 56px);
+    }
+
+    /* ─── STYLES GRID ──────────────────────────────── */
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .style-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 3vw, 36px);
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .style-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top left, rgba(230,57,70,0.06), transparent 60%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .style-card:hover { border-color: rgba(230,57,70,0.35); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+    .style-card:hover::before { opacity: 1; }
+
+    .style-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      background: rgba(230,57,70,0.1);
+      border: 1px solid rgba(230,57,70,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .style-icon svg { width: 24px; height: 24px; color: var(--red); }
+
+    .style-name {
+      font-family: var(--font-h);
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .style-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .style-tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ─── PORTFOLIO ────────────────────────────────── */
+    .portfolio-section { background: var(--bg2); }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (min-width: 600px) {
+      .portfolio-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .portfolio-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .portfolio-card:first-child { grid-row: span 2; }
+    }
+
+    .portfolio-card {
+      position: relative;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    @media (min-width: 1024px) {
+      .portfolio-card:first-child { aspect-ratio: auto; }
+    }
+
+    .portfolio-card:hover {
+      border-color: rgba(230,57,70,0.4);
+      transform: scale(1.02);
+    }
+
+    .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+
+    .portfolio-symbol {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      opacity: 0.2;
+      user-select: none;
+      pointer-events: none;
+      transition: opacity var(--transition);
+    }
+    .portfolio-card:hover .portfolio-symbol { opacity: 0.08; }
+
+    .portfolio-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(230,57,70,0.18), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition);
+      display: flex;
+      align-items: flex-end;
+      padding: 16px;
+    }
+
+    .portfolio-style-tag {
+      font-family: var(--font-h);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--red);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* ─── ARTIST ───────────────────────────────────── */
+    .artist-section { background: var(--bg3); }
+
+    .artist-card {
+      display: grid;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .artist-card { grid-template-columns: 300px 1fr; gap: 60px; }
+    }
+
+    .artist-avatar {
+      width: 100%;
+      max-width: 300px;
+      aspect-ratio: 3/4;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .artist-avatar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at bottom, rgba(230,57,70,0.08), transparent 60%);
+    }
+
+    .artist-avatar-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.25;
+    }
+
+    .artist-avatar-inner svg { width: 64px; height: 64px; color: var(--white); }
+    .artist-avatar-inner span { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .artist-name {
+      font-family: var(--font-h);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .artist-role {
+      color: var(--red);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .artist-bio {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 480px;
+    }
+
+    .artist-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .badge {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--card);
+    }
+
+    .badge.highlight {
+      border-color: rgba(230,57,70,0.35);
+      color: var(--red);
+      background: rgba(230,57,70,0.06);
+    }
+
+    /* ─── PROCESS ──────────────────────────────────── */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      position: relative;
+    }
+
+    /* connector line */
+    @media (min-width: 768px) {
+      .process-grid::before {
+        content: '';
+        position: absolute;
+        top: 36px;
+        left: calc(12.5%);
+        right: calc(12.5%);
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--border) 15%, var(--border) 85%, transparent);
+        z-index: 0;
+      }
+    }
+
+    .process-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      transition: border-color var(--transition);
+    }
+    .process-card:hover { border-color: rgba(230,57,70,0.3); }
+
+    .process-num {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-family: var(--font-h);
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: var(--red);
+      position: relative;
+    }
+
+    .process-num::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1px solid rgba(230,57,70,0.15);
+    }
+
+    .process-icon {
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 12px;
+      color: var(--red);
+    }
+
+    .process-step {
+      font-family: var(--font-h);
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .process-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── PRICING ──────────────────────────────────── */
+    .pricing-section { background: var(--bg2); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .pricing-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: clamp(28px, 4vw, 40px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: border-color var(--transition), transform var(--transition);
+      cursor: default;
+    }
+    .pricing-card:hover { border-color: rgba(230,57,70,0.3); transform: translateY(-4px); }
+
+    .pricing-card.featured {
+      border-color: rgba(230,57,70,0.5);
+      background: linear-gradient(160deg, rgba(230,57,70,0.08) 0%, var(--card) 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card.featured::before {
+      content: 'Популярне';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-family: var(--font-h);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--red);
+      color: var(--white);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    .pricing-tier {
+      font-family: var(--font-h);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .pricing-title {
+      font-family: var(--font-h);
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .pricing-price {
+      font-family: var(--font-h);
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .pricing-price sub {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0;
+    }
+
+    .pricing-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .pricing-features li svg {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      margin-top: 2px;
+      color: var(--red);
+    }
+
+    /* ─── FOOTER ───────────────────────────────────── */
+    footer {
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+      padding: 56px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 40px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; }
+    }
+
+    .footer-brand-logo {
+      font-family: var(--font-h);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .footer-brand-logo span { color: var(--red); }
+
+    .footer-brand-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
+      cursor: pointer;
+    }
+    .social-link:hover { color: var(--white); border-color: var(--muted2); background: rgba(255,255,255,0.05); }
+    .social-link:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    .social-link svg { width: 18px; height: 18px; }
+
+    .footer-col-title {
+      font-family: var(--font-h);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--muted2);
+    }
+
+    .footer-badge {
+      font-size: 0.78rem;
+      color: var(--muted2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ─── Sticky CTA bar (mobile) ──────────────────── */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      padding: 12px 20px;
+      background: rgba(13,13,13,0.96);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 767px) {
+      .sticky-cta { display: block; }
+      body { padding-bottom: 72px; }
+    }
+
+    .sticky-cta .btn { width: 100%; justify-content: center; }
+
+    /* ─── Divider ──────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ─── Reduced motion ────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .hero-eyebrow::before { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─────────────────────────────────────── -->
+  <nav class="nav" role="navigation" aria-label="Головна навігація">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">INK<span>LAB</span></a>
+        <ul class="nav-links">
+          <li><a href="#styles">Стилі</a></li>
+          <li><a href="#portfolio">Портфоліо</a></li>
+          <li><a href="#artist">Артист</a></li>
+          <li><a href="#pricing">Ціни</a></li>
+        </ul>
+        <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta" aria-label="Записатись через Telegram">
+          <!-- Telegram icon -->
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          Записатись
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────── -->
+  <section id="hero" class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-eyebrow" aria-label="Відкрито для запису">Відкрито для запису</div>
+
+        <h1 class="hero-title">
+          INK<br/>
+          <span class="accent">LAB</span>
+        </h1>
+
+        <p class="section-label" style="margin-bottom:8px;">Tattoo &amp; Piercing Studio</p>
+
+        <p class="hero-sub">Авторські роботи. Стерильно. Назавжди.</p>
+
+        <div class="hero-actions">
+          <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Записатись на татуювання через Telegram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Записатись
+          </a>
+          <a href="#portfolio" class="btn btn-ghost">Дивитись роботи</a>
+        </div>
+
+        <div class="hero-stats" aria-label="Статистика студії">
+          <div>
+            <div class="hero-stat-value">800<span>+</span></div>
+            <div class="hero-stat-label">Завершених робіт</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">6</div>
+            <div class="hero-stat-label">Років досвіду</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">4</div>
+            <div class="hero-stat-label">Стилі</div>
+          </div>
+          <div>
+            <div class="hero-stat-value">100<span>%</span></div>
+            <div class="hero-stat-label">Стерильно</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── STYLES ────────────────────────────────────── -->
+  <section id="styles" class="section" aria-labelledby="styles-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Стилі</p>
+        <h2 class="section-title" id="styles-heading">Що ми робимо</h2>
+        <p class="section-sub">Кожен стиль — окрема мова. Ми говоримо всіма чотирма.</p>
+      </div>
+
+      <div class="styles-grid">
+
+        <!-- Realism -->
+        <article class="style-card">
+          <div class="style-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+          </div>
+          <h3 class="style-name">Реалізм</h3>
+          <p class="style-desc">Фотографічна точність у чорно-білому чи кольорі. Портрети, тварини, природа — деталь до деталі.</p>
+          <span class="style-tag">Realism</span>
+        </article>
+
+        <!-- Blackwork -->
+        <article class="style-card">
+          <div class="style-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+          </div>
+          <h3 class="style-name">Блекворк</h3>
+          <p class="style-desc">Сміливі лінії, суцільний чорний. Мінімалістична естетика максимального впливу. Стиль поза часом.</p>
+          <span class="style-tag">Blackwork</span>
+        </article>
+
+        <!-- Geometric -->
+        <article class="style-card">
+          <div class="style-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 19.5 2 19.5"/><line x1="12" y1="2" x2="12" y2="19.5"/><line x1="2" y1="19.5" x2="22" y2="19.5"/></svg>
+          </div>
+          <h3 class="style-name">Геометрія</h3>
+          <p class="style-desc">Точні лінії, симетрія, мандали. Математична краса на шкірі — кожна фігура має сенс.</p>
+          <span class="style-tag">Geometric</span>
+        </article>
+
+        <!-- Watercolor -->
+        <article class="style-card">
+          <div class="style-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10"/><path d="M12 2c2.5 3 4 6.5 4 10"/><path d="M12 2c-2.5 3-4 6.5-4 10"/></svg>
+          </div>
+          <h3 class="style-name">Акварель</h3>
+          <p class="style-desc">Кольорові переходи без контурів, розплавлені відтінки. Живопис на шкірі — ніжно і сміливо водночас.</p>
+          <span class="style-tag">Watercolor</span>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── PORTFOLIO ─────────────────────────────────── -->
+  <section id="portfolio" class="section portfolio-section" aria-labelledby="portfolio-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Портфоліо</p>
+        <h2 class="section-title" id="portfolio-heading">Наші роботи</h2>
+        <p class="section-sub">Кожне татуювання — унікальний проєкт. Жодного шаблону.</p>
+      </div>
+
+      <div class="portfolio-grid" role="list">
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Реалізм — портрет">
+          <span class="portfolio-symbol" aria-hidden="true">🔱</span>
+          <div class="portfolio-overlay">
+            <span class="portfolio-style-tag">Реалізм</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Блекворк — рукав">
+          <span class="portfolio-symbol" aria-hidden="true">⚡</span>
+          <div class="portfolio-overlay">
+            <span class="portfolio-style-tag">Блекворк</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Геометрія — мандала">
+          <span class="portfolio-symbol" aria-hidden="true">◈</span>
+          <div class="portfolio-overlay">
+            <span class="portfolio-style-tag">Геометрія</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Акварель — квіти">
+          <span class="portfolio-symbol" aria-hidden="true">🌊</span>
+          <div class="portfolio-overlay">
+            <span class="portfolio-style-tag">Акварель</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Реалізм — тварина">
+          <span class="portfolio-symbol" aria-hidden="true">🐺</span>
+          <div class="portfolio-overlay">
+            <span class="portfolio-style-tag">Реалізм</span>
+          </div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Блекворк — дотворк">
+          <span class="portfolio-symbol" aria-hidden="true">✦</span>
+          <div class="portfolio-overlay">
+            <span class="portfolio-style-tag">Блекворк</span>
+          </div>
+        </div>
+
+      </div>
+
+      <p style="text-align:center; margin-top:32px;">
+        <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="margin:0 auto;" aria-label="Переглянути більше робіт у Telegram">
+          Більше в Telegram
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── ARTIST ─────────────────────────────────────── -->
+  <section id="artist" class="section artist-section" aria-labelledby="artist-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Команда</p>
+        <h2 class="section-title" id="artist-heading">За кожною роботою</h2>
+      </div>
+
+      <div class="artist-card">
+        <div class="artist-avatar" role="img" aria-label="Фото артиста Макса Ковальчука — заповнювач">
+          <div class="artist-avatar-inner" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+            <span>Фото артиста</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="artist-role">Tattoo Artist</p>
+          <h3 class="artist-name">Макс<br/>Ковальчук</h3>
+          <p class="artist-bio">
+            Шість років у татуюванні — від маленьких мінімалістичних робіт до багатогодинних фотореалістичних сесій.
+            Понад 800 завершених проєктів, кожен — ретельна консультація та індивідуальний ескіз.
+            Стерильне обладнання, перевірені пігменти, чіткий догляд після сеансу.
+          </p>
+          <div class="artist-badges" aria-label="Спеціалізації та досвід">
+            <span class="badge highlight">6 років досвіду</span>
+            <span class="badge highlight">800+ робіт</span>
+            <span class="badge">Реалізм</span>
+            <span class="badge">Блекворк</span>
+            <span class="badge">Геометрія</span>
+            <span class="badge">Акварель</span>
+          </div>
+          <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Записатись до Макса через Telegram">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Записатись до Макса
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── PROCESS ────────────────────────────────────── -->
+  <section id="process" class="section" aria-labelledby="process-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Процес</p>
+        <h2 class="section-title" id="process-heading">Як це відбувається</h2>
+        <p class="section-sub">Чотири кроки від ідеї до татуювання, яке залишиться назавжди.</p>
+      </div>
+
+      <div class="process-grid" role="list">
+
+        <article class="process-card" role="listitem">
+          <div class="process-num" aria-hidden="true">01</div>
+          <svg class="process-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          <h3 class="process-step">Консультація</h3>
+          <p class="process-desc">Обговорюємо ідею, розміщення, розмір. Безкоштовно — онлайн або особисто.</p>
+        </article>
+
+        <article class="process-card" role="listitem">
+          <div class="process-num" aria-hidden="true">02</div>
+          <svg class="process-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <h3 class="process-step">Ескіз</h3>
+          <p class="process-desc">Малюємо авторський ескіз під вас. Ніяких кліпартів — кожна лінія унікальна.</p>
+        </article>
+
+        <article class="process-card" role="listitem">
+          <div class="process-num" aria-hidden="true">03</div>
+          <svg class="process-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+          <h3 class="process-step">Сеанс</h3>
+          <p class="process-desc">Стерильне обладнання, якісні пігменти. Комфортна атмосфера протягом усього сеансу.</p>
+        </article>
+
+        <article class="process-card" role="listitem">
+          <div class="process-num" aria-hidden="true">04</div>
+          <svg class="process-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <h3 class="process-step">Догляд</h3>
+          <p class="process-desc">Детальна інструкція по догляду. На зв'язку весь час загоєння — питання завжди відповімо.</p>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── PRICING ────────────────────────────────────── -->
+  <section id="pricing" class="section pricing-section" aria-labelledby="pricing-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Вартість</p>
+        <h2 class="section-title" id="pricing-heading">Ціни</h2>
+        <p class="section-sub">Залежить від розміру та складності роботи. Консультація — безкоштовно.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Small -->
+        <article class="pricing-card">
+          <div>
+            <p class="pricing-tier">Мінімалізм</p>
+            <h3 class="pricing-title">Маленьке тату</h3>
+          </div>
+          <div>
+            <div class="pricing-price">від 1 200 <sub>грн</sub></div>
+            <p class="pricing-note">До 5 см, 1–2 год</p>
+          </div>
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Авторський ескіз
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Стерильне обладнання
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Інструкція по догляду
+            </li>
+          </ul>
+          <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="text-align:center; justify-content:center;" aria-label="Записатись на маленьке татуювання">Записатись</a>
+        </article>
+
+        <!-- Medium - featured -->
+        <article class="pricing-card featured">
+          <div>
+            <p class="pricing-tier">Найчастіше обирають</p>
+            <h3 class="pricing-title">Середнє тату</h3>
+          </div>
+          <div>
+            <div class="pricing-price">від 3 500 <sub>грн</sub></div>
+            <p class="pricing-note">5–15 см, 2–4 год</p>
+          </div>
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Авторський ескіз
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Стерильне обладнання
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Деталізований ескіз
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Правки ескізу включені
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Супровід під час загоєння
+            </li>
+          </ul>
+          <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="text-align:center; justify-content:center;" aria-label="Записатись на середнє татуювання">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Записатись
+          </a>
+        </article>
+
+        <!-- Large -->
+        <article class="pricing-card">
+          <div>
+            <p class="pricing-tier">Великий проєкт</p>
+            <h3 class="pricing-title">Велике тату / Рукав</h3>
+          </div>
+          <div>
+            <div class="pricing-price">від 7 000 <sub>грн</sub></div>
+            <p class="pricing-note">15+ см, кілька сеансів</p>
+          </div>
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Все включено
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Детальне планування проєкту
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Резерв дат на весь проєкт
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Знижка на тач-ап
+            </li>
+          </ul>
+          <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" style="text-align:center; justify-content:center;" aria-label="Записатись на велике татуювання або рукав">Записатись</a>
+        </article>
+
+      </div>
+
+      <p style="text-align:center; margin-top:28px; font-size:0.85rem; color:var(--muted);">
+        Точна вартість обговорюється під час консультації. Пірсинг — від 400 грн.
+      </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── FOOTER ─────────────────────────────────────── -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div>
+          <div class="footer-brand-logo">INK<span>LAB</span></div>
+          <p class="footer-brand-desc">
+            Авторські татуювання та пірсинг. Стерильно, якісно, назавжди.
+            Київ — запис через Telegram.
+          </p>
+          <div class="footer-social" aria-label="Соціальні мережі">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/inklab.kyiv/" target="_blank" class="social-link" aria-label="Instagram INK LAB" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <!-- Telegram -->
+            <a href="https://t.me/ink_lab_kyiv" target="_blank" class="social-link" aria-label="Telegram INK LAB" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Навігація</p>
+          <ul class="footer-links">
+            <li><a href="#styles">Стилі</a></li>
+            <li><a href="#portfolio">Портфоліо</a></li>
+            <li><a href="#artist">Артист</a></li>
+            <li><a href="#process">Процес</a></li>
+            <li><a href="#pricing">Ціни</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer-col-title">Контакти</p>
+          <ul class="footer-links">
+            <li>
+              <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" aria-label="Написати в Telegram">
+                Telegram: @ink_lab_kyiv
+              </a>
+            </li>
+            <li><a href="https://www.instagram.com/inklab.kyiv/" target="_blank">Instagram: @inklab.kyiv</a></li>
+            <li><a href="#">Київ, Україна</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2026 INK LAB. Всі права захищені.</p>
+        <p class="footer-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Стерильно · Безпечно · Якісно
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── Sticky mobile CTA ─────────────────────────── -->
+  <div class="sticky-cta" role="complementary" aria-label="Швидкий запис">
+    <a href="https://t.me/ink_lab_kyiv" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Записатись через Telegram">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+      Записатись в Telegram
+    </a>
+  </div>
+
+</body>
+</html>
