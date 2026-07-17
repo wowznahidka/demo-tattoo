@@ -1157,6 +1157,39 @@
     }
     .art-link:hover { gap: 9px; }
 
+    /* ─── HERO CINEMA ──────────────────────────────── */
+    .hero-cinema { position:absolute; inset:0; z-index:0; overflow:hidden; }
+    .hero-cinema-img {
+      position:absolute; inset:-5%;
+      background:url('https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=1920&q=80&fit=crop&auto=format') center/cover;
+      filter:brightness(.22) saturate(.65);
+      animation:cinemaZoom 24s ease-in-out infinite alternate;
+      will-change:transform;
+    }
+    .hero-cinema-glow {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse at 18% 35%, rgba(230,57,70,.24) 0%, transparent 45%),
+        radial-gradient(ellipse at 78% 65%, rgba(90,0,25,.18) 0%, transparent 50%);
+      animation:cinemaGlow 9s ease-in-out infinite alternate;
+    }
+    .hero-cinema-scanlines {
+      position:absolute; inset:0;
+      background: repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.03) 3px,rgba(0,0,0,.03) 4px);
+      pointer-events:none;
+    }
+    @keyframes cinemaZoom {
+      from { transform:scale(1) translate(0,0); }
+      to { transform:scale(1.09) translate(-2%,1.5%); }
+    }
+    @keyframes cinemaGlow {
+      from { opacity:.7; }
+      to { opacity:1; }
+    }
+    .hero { background:#080808; }
+    .hero-inner { position:relative; z-index:1; }
+    .hero-glow { display:none; }
+
     /* ─── SHOWCASE CTA ─────────────────────────────── */
     .cta-block {
       background: linear-gradient(135deg, #1a0808 0%, #0d0d0d 50%, #0a0a14 100%);
@@ -1228,8 +1261,9 @@
         loop
         playsinline
         preload="metadata"
-        poster="https://images.unsplash.com/photo-1761276297688-bc67f27c2577?w=1600&q=80&auto=format&fit=crop"
+        poster="https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=1920&q=80&auto=format&fit=crop"
       >
+        <source src="https://videos.pexels.com/video-files/5477815/5477815-hd_1280_720_30fps.mp4" type="video/mp4">
         <source src="https://videos.pexels.com/video-files/4343477/4343477-hd_1280_720_24fps.mp4" type="video/mp4">
       </video>
     </div>
@@ -1290,7 +1324,7 @@
 
       <div class="sg-grid">
 
-        <article class="sg-card" style="background-image:url('images/photo1.jpg')">
+        <article class="sg-card" style="background-image:url('https://images.unsplash.com/photo-1590736969596-79e3bc60f14e?w=600&h=900&fit=crop&q=80')">
           <div class="sg-body">
             <span class="sg-num">01</span>
             <h3 class="sg-name">Реалізм</h3>
@@ -1299,7 +1333,7 @@
           </div>
         </article>
 
-        <article class="sg-card" style="background-image:url('images/photo2.jpg')">
+        <article class="sg-card" style="background-image:url('https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&h=900&fit=crop&q=80')">
           <div class="sg-body">
             <span class="sg-num">02</span>
             <h3 class="sg-name">Олд-скул</h3>
@@ -1308,7 +1342,7 @@
           </div>
         </article>
 
-        <article class="sg-card" style="background-image:url('images/photo3.jpg')">
+        <article class="sg-card" style="background-image:url('https://images.unsplash.com/photo-1584395630827-860eee694d7b?w=600&h=900&fit=crop&q=80')">
           <div class="sg-body">
             <span class="sg-num">03</span>
             <h3 class="sg-name">Блекворк</h3>
@@ -1317,7 +1351,7 @@
           </div>
         </article>
 
-        <article class="sg-card" style="background-image:url('images/photo4.jpg')">
+        <article class="sg-card" style="background-image:url('https://images.unsplash.com/photo-1562962230-16b9c471dbf3?w=600&h=900&fit=crop&q=80')">
           <div class="sg-body">
             <span class="sg-num">04</span>
             <h3 class="sg-name">Чорно-сіре</h3>
@@ -1326,7 +1360,7 @@
           </div>
         </article>
 
-        <article class="sg-card" style="background-image:url('images/photo5.jpg')">
+        <article class="sg-card" style="background-image:url('https://images.unsplash.com/photo-1583515242635-6bba9b0e7d5d?w=600&h=900&fit=crop&q=80')">
           <div class="sg-body">
             <span class="sg-num">05</span>
             <h3 class="sg-name">Геометрія</h3>
@@ -1335,7 +1369,7 @@
           </div>
         </article>
 
-        <article class="sg-card" style="background-image:url('images/photo6.jpg')">
+        <article class="sg-card" style="background-image:url('https://images.unsplash.com/photo-1611695434597-73abd1cc58c5?w=600&h=900&fit=crop&q=80')">
           <div class="sg-body">
             <span class="sg-num">06</span>
             <h3 class="sg-name">Акварель</h3>
@@ -1361,46 +1395,52 @@
 
       <div class="portfolio-grid" role="list">
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Реалізм — портрет" style="background-image:url('images/photo1.jpg');background-size:cover;background-position:center;">
-          <span class="portfolio-symbol" aria-hidden="true" style="display:none;">🔱</span>
-          <div class="portfolio-overlay">
-            <span class="portfolio-style-tag">Реалізм</span>
-          </div>
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Реалізм — портрет" style="background-image:url('https://images.unsplash.com/photo-1590736969596-79e3bc60f14e?w=600&h=700&fit=crop&q=80');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Реалізм</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Олд-скул — рукав" style="background-image:url('images/photo2.jpg');background-size:cover;background-position:center;">
-          <span class="portfolio-symbol" aria-hidden="true" style="display:none;">⚡</span>
-          <div class="portfolio-overlay">
-            <span class="portfolio-style-tag">Олд-скул</span>
-          </div>
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Блекворк" style="background-image:url('https://images.unsplash.com/photo-1584395630827-860eee694d7b?w=600&h=700&fit=crop&q=80');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Блекворк</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Укр. орнамент" style="background-image:url('images/photo3.jpg');background-size:cover;background-position:center;">
-          <span class="portfolio-symbol" aria-hidden="true" style="display:none;">◈</span>
-          <div class="portfolio-overlay">
-            <span class="portfolio-style-tag">Укр. орнамент</span>
-          </div>
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Геометрія" style="background-image:url('https://images.unsplash.com/photo-1583515242635-6bba9b0e7d5d?w=600&h=700&fit=crop&q=80');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Геометрія</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Чорно-сіре" style="background-image:url('images/photo4.jpg');background-size:cover;background-position:center;">
-          <span class="portfolio-symbol" aria-hidden="true">🌊</span>
-          <div class="portfolio-overlay">
-            <span class="portfolio-style-tag">Чорно-сіре</span>
-          </div>
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Чорно-сіре" style="background-image:url('https://images.unsplash.com/photo-1562962230-16b9c471dbf3?w=600&h=700&fit=crop&q=80');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Чорно-сіре</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Реалізм — тварина" style="background-image:url('images/photo5.jpg');background-size:cover;background-position:center;">
-          <span class="portfolio-symbol" aria-hidden="true">🐺</span>
-          <div class="portfolio-overlay">
-            <span class="portfolio-style-tag">Реалізм</span>
-          </div>
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Реалізм — тварина" style="background-image:url('https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&h=700&fit=crop&q=80');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Реалізм</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Робота: Реалізм — портрет 2" style="background-image:url('images/photo6.jpg');background-size:cover;background-position:center;">
-          <span class="portfolio-symbol" aria-hidden="true">✦</span>
-          <div class="portfolio-overlay">
-            <span class="portfolio-style-tag">Реалізм</span>
-          </div>
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Акварель" style="background-image:url('https://images.unsplash.com/photo-1611695434597-73abd1cc58c5?w=600&h=700&fit=crop&q=80');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Акварель</span></div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Олд-скул" style="background-image:url('images/photo1.jpg');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Олд-скул</span></div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Реалізм" style="background-image:url('images/photo2.jpg');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Реалізм</span></div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Блекворк" style="background-image:url('images/photo3.jpg');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Блекворк</span></div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Чорно-сіре" style="background-image:url('images/photo4.jpg');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Чорно-сіре</span></div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Геометрія" style="background-image:url('images/photo5.jpg');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Геометрія</span></div>
+        </div>
+
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Акварель" style="background-image:url('images/photo6.jpg');background-size:cover;background-position:center;">
+          <div class="portfolio-overlay"><span class="portfolio-style-tag">Акварель</span></div>
         </div>
 
       </div>
@@ -1461,7 +1501,7 @@
       <div class="artists-grid">
 
         <div class="art-card">
-          <div class="art-photo" style="background-image:url('images/artist.jpg')"></div>
+          <div class="art-photo" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=700&fit=crop&q=80')"></div>
           <div class="art-body">
             <p class="art-role">Засновник · Lead Artist</p>
             <h3 class="art-name">Євген<br/>Ковальчук</h3>
@@ -1479,7 +1519,7 @@
         </div>
 
         <div class="art-card">
-          <div class="art-photo" style="background-image:url('images/photo2.jpg')"></div>
+          <div class="art-photo" style="background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=700&fit=crop&q=80')"></div>
           <div class="art-body">
             <p class="art-role">Senior Artist</p>
             <h3 class="art-name">Соня<br/>Мороз</h3>
@@ -1497,7 +1537,7 @@
         </div>
 
         <div class="art-card">
-          <div class="art-photo" style="background-image:url('images/photo3.jpg')"></div>
+          <div class="art-photo" style="background-image:url('https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&h=700&fit=crop&q=80')"></div>
           <div class="art-body">
             <p class="art-role">Artist · Blackwork</p>
             <h3 class="art-name">Олег<br/>Тимченко</h3>
