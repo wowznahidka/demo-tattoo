@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NILOV DMYTRO — Tattoo Artist</title>
-  <meta name="description" content="Нілов Дмитро — авторські татуювання у Луцьку. Реалізм, олд-скул, українські орнаменти. 10 років досвіду." />
+  <title>NOCTURNE Studio — Авторські татуювання в Києві</title>
+  <meta name="description" content="NOCTURNE — преміум тату-студія в Києві. Реалізм, блекворк, геометрія, акварель. 3 майстри, авторські ескізи, стерильно." />
 
   <!-- Google Fonts: Sora + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -963,6 +963,225 @@
       }
       .hero-eyebrow::before { animation: none; }
     }
+
+    /* ─── STYLES GALLERY ───────────────────────────── */
+    .sg-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 44px;
+    }
+    @media (min-width: 768px) {
+      .sg-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    }
+    @media (min-width: 1024px) {
+      .sg-grid { grid-template-columns: repeat(6, 1fr); gap: 14px; }
+    }
+    .sg-card {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background-size: cover;
+      background-position: center;
+      cursor: pointer;
+      display: flex;
+      align-items: flex-end;
+    }
+    .sg-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.25) 55%, transparent 100%);
+      transition: opacity .35s;
+    }
+    .sg-card:hover::before { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,.95) 0%, rgba(0,0,0,.45) 55%, rgba(0,0,0,.1) 100%); }
+    .sg-body {
+      position: relative;
+      z-index: 1;
+      padding: 16px 14px;
+      width: 100%;
+    }
+    .sg-num {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: var(--red);
+      margin-bottom: 5px;
+    }
+    .sg-name {
+      font-family: var(--font-h);
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+      color: #fff;
+    }
+    .sg-desc {
+      font-size: .77rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 5px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .35s;
+      opacity: 0;
+    }
+    .sg-card:hover .sg-desc { max-height: 60px; opacity: 1; }
+    .sg-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--red);
+      margin-top: 8px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .3s .05s, transform .3s .05s;
+    }
+    .sg-card:hover .sg-action { opacity: 1; transform: none; }
+
+    /* ─── TESTIMONIALS ─────────────────────────────── */
+    .tst-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 44px;
+    }
+    @media (min-width: 600px) { .tst-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .tst-grid { grid-template-columns: repeat(4, 1fr); } }
+    .tst-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .22s, transform .22s;
+    }
+    .tst-card:hover { border-color: var(--muted2); transform: translateY(-3px); }
+    .tst-stars { color: #f59e0b; font-size: 14px; letter-spacing: 1px; }
+    .tst-quote {
+      font-size: .9rem;
+      color: rgba(255,255,255,.82);
+      line-height: 1.65;
+      flex: 1;
+      font-style: italic;
+    }
+    .tst-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+    }
+    .tst-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-h);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+    .tst-name { font-size: .85rem; font-weight: 700; color: #fff; }
+    .tst-meta { font-size: .75rem; color: var(--muted); margin-top: 1px; }
+
+    /* ─── ARTISTS GRID ─────────────────────────────── */
+    .artists-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 44px;
+    }
+    @media (min-width: 768px) { .artists-grid { grid-template-columns: repeat(3, 1fr); } }
+    .art-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .art-photo {
+      height: 300px;
+      background-size: cover;
+      background-position: center top;
+      position: relative;
+    }
+    .art-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--card) 0%, transparent 50%);
+    }
+    .art-body { padding: 0 22px 22px; position: relative; margin-top: -28px; z-index: 1; }
+    .art-role {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+    .art-name {
+      font-family: var(--font-h);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .art-bio { font-size: .85rem; color: var(--muted); line-height: 1.65; margin-bottom: 16px; }
+    .art-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 18px; }
+    .art-tag {
+      font-size: .72rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 100px;
+      background: var(--bg3); border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .art-link {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--red);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap .2s;
+    }
+    .art-link:hover { gap: 9px; }
+
+    /* ─── SHOWCASE CTA ─────────────────────────────── */
+    .cta-block {
+      background: linear-gradient(135deg, #1a0808 0%, #0d0d0d 50%, #0a0a14 100%);
+      border: 1px solid rgba(230,57,70,.2);
+      border-radius: 24px;
+      padding: clamp(40px,8vw,80px) clamp(24px,6vw,60px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-top: 64px;
+    }
+    .cta-block::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(230,57,70,.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-block .section-title { margin-bottom: 14px; }
+    .cta-block .section-sub { margin: 0 auto 32px; max-width: 480px; text-align: center; }
+    .cta-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
   </style>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Тату-студія — Нілов | Запис на сеанс онлайн">
@@ -983,12 +1202,12 @@
   <nav class="nav" role="navigation" aria-label="Головна навігація">
     <div class="container">
       <div class="nav-inner">
-        <a href="#hero" class="nav-logo">NILOV<span>·</span>DMYTRO</a>
+        <a href="#hero" class="nav-logo">NOCTURNE<span>·</span>INK</a>
         <ul class="nav-links">
           <li><a href="#styles">Стилі</a></li>
-          <li><a href="#portfolio">Портфоліо</a></li>
+          <li><a href="#portfolio">Роботи</a></li>
+          <li><a href="#artist">Майстри</a></li>
           <li><a href="#reviews">Відгуки</a></li>
-          <li><a href="#artist">Артист</a></li>
           <li><a href="#pricing">Ціни</a></li>
         </ul>
         <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta" aria-label="Записатись через Telegram">
@@ -1017,16 +1236,16 @@
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-inner">
-        <div class="hero-eyebrow" aria-label="Відкрито для запису">Відкрито для запису</div>
+        <div class="hero-eyebrow" aria-label="Записуємо на серпень">Записуємо на серпень — 4 вільні дати</div>
 
         <h1 class="hero-title">
-          NILOV<br/>
-          <span class="accent">DMYTRO</span>
+          NOCTURNE<br/>
+          <span class="accent">INK STUDIO</span>
         </h1>
 
-        <p class="section-label" style="margin-bottom:8px;">Tattoo Artist</p>
+        <p class="section-label" style="margin-bottom:8px;">Київ · Татуювання з 2015</p>
 
-        <p class="hero-sub">Реалізм. Олд-скул. Українські орнаменти.</p>
+        <p class="hero-sub">Реалізм. Блекворк. Геометрія. Акварель. Кожне тату — авторський ескіз.</p>
 
         <div class="hero-actions">
           <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Записатись на татуювання через Telegram">
@@ -1065,50 +1284,64 @@
     <div class="container">
       <div class="section-head">
         <p class="section-label">Стилі</p>
-        <h2 class="section-title" id="styles-heading">Що ми робимо</h2>
-        <p class="section-sub">Кожен стиль — окрема мова. Ми говоримо всіма чотирма.</p>
+        <h2 class="section-title" id="styles-heading">Шість стилів — один майстер на кожен</h2>
+        <p class="section-sub">Ескіз малюємо з нуля. Ніяких шаблонів і кліпартів — тільки авторська робота під вас.</p>
       </div>
 
-      <div class="styles-grid">
+      <div class="sg-grid">
 
-        <!-- Realism -->
-        <article class="style-card">
-          <div class="style-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"/></svg>
+        <article class="sg-card" style="background-image:url('images/photo1.jpg')">
+          <div class="sg-body">
+            <span class="sg-num">01</span>
+            <h3 class="sg-name">Реалізм</h3>
+            <p class="sg-desc">Фотографічна точність. Портрети, тварини, природа — деталь до деталі.</p>
+            <a href="https://telegram.me/znahidkawow" class="sg-action">Записатись →</a>
           </div>
-          <h3 class="style-name">Реалізм</h3>
-          <p class="style-desc">Фотографічна точність у чорно-білому чи кольорі. Портрети, тварини, природа — деталь до деталі.</p>
-          <span class="style-tag">Realism</span>
         </article>
 
-        <!-- Blackwork -->
-        <article class="style-card">
-          <div class="style-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+        <article class="sg-card" style="background-image:url('images/photo2.jpg')">
+          <div class="sg-body">
+            <span class="sg-num">02</span>
+            <h3 class="sg-name">Олд-скул</h3>
+            <p class="sg-desc">Класика 50-х. Насичені кольори, чіткі контури, вічна естетика.</p>
+            <a href="https://telegram.me/znahidkawow" class="sg-action">Записатись →</a>
           </div>
-          <h3 class="style-name">Блекворк</h3>
-          <p class="style-desc">Сміливі лінії, суцільний чорний. Мінімалістична естетика максимального впливу. Стиль поза часом.</p>
-          <span class="style-tag">Blackwork</span>
         </article>
 
-        <!-- Geometric -->
-        <article class="style-card">
-          <div class="style-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 19.5 2 19.5"/><line x1="12" y1="2" x2="12" y2="19.5"/><line x1="2" y1="19.5" x2="22" y2="19.5"/></svg>
+        <article class="sg-card" style="background-image:url('images/photo3.jpg')">
+          <div class="sg-body">
+            <span class="sg-num">03</span>
+            <h3 class="sg-name">Блекворк</h3>
+            <p class="sg-desc">Суцільний чорний, сміливі лінії. Мінімалізм максимального впливу.</p>
+            <a href="https://telegram.me/znahidkawow" class="sg-action">Записатись →</a>
           </div>
-          <h3 class="style-name">Геометрія</h3>
-          <p class="style-desc">Точні лінії, симетрія, мандали. Математична краса на шкірі — кожна фігура має сенс.</p>
-          <span class="style-tag">Geometric</span>
         </article>
 
-        <!-- Watercolor -->
-        <article class="style-card">
-          <div class="style-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10"/><path d="M12 2c2.5 3 4 6.5 4 10"/><path d="M12 2c-2.5 3-4 6.5-4 10"/></svg>
+        <article class="sg-card" style="background-image:url('images/photo4.jpg')">
+          <div class="sg-body">
+            <span class="sg-num">04</span>
+            <h3 class="sg-name">Чорно-сіре</h3>
+            <p class="sg-desc">Витончені переходи тонів. Класика що не виходить з моди.</p>
+            <a href="https://telegram.me/znahidkawow" class="sg-action">Записатись →</a>
           </div>
-          <h3 class="style-name">Акварель</h3>
-          <p class="style-desc">Кольорові переходи без контурів, розплавлені відтінки. Живопис на шкірі — ніжно і сміливо водночас.</p>
-          <span class="style-tag">Watercolor</span>
+        </article>
+
+        <article class="sg-card" style="background-image:url('images/photo5.jpg')">
+          <div class="sg-body">
+            <span class="sg-num">05</span>
+            <h3 class="sg-name">Геометрія</h3>
+            <p class="sg-desc">Точні лінії, мандали, симетрія. Математична краса що захоплює.</p>
+            <a href="https://telegram.me/znahidkawow" class="sg-action">Записатись →</a>
+          </div>
+        </article>
+
+        <article class="sg-card" style="background-image:url('images/photo6.jpg')">
+          <div class="sg-body">
+            <span class="sg-num">06</span>
+            <h3 class="sg-name">Акварель</h3>
+            <p class="sg-desc">Кольорові переходи без контурів. Живопис на шкірі — ніжно і сміливо.</p>
+            <a href="https://telegram.me/znahidkawow" class="sg-action">Записатись →</a>
+          </div>
         </article>
 
       </div>
@@ -1217,42 +1450,70 @@
   <hr class="divider" />
 
   <!-- ─── ARTIST ─────────────────────────────────────── -->
-  <section id="artist" class="section artist-section" aria-labelledby="artist-heading">
+  <section id="artist" class="section" aria-labelledby="artist-heading">
     <div class="container">
       <div class="section-head">
-        <p class="section-label">Команда</p>
-        <h2 class="section-title" id="artist-heading">За кожною роботою</h2>
+        <p class="section-label">Майстри</p>
+        <h2 class="section-title" id="artist-heading">Три майстри — три характери</h2>
+        <p class="section-sub">Кожен веде свою нішу. Ти записуєшся до конкретної людини, яка чула про твою ідею ще на консультації.</p>
       </div>
 
-      <div class="artist-card">
-        <div class="artist-avatar" role="img" aria-label="Дмитро Нілов — тату-артист" style="background-image:url('images/artist.jpg');background-size:cover;background-position:center top;">
-          <div class="artist-avatar-inner" aria-hidden="true" style="display:none;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            <span>Фото артиста</span>
+      <div class="artists-grid">
+
+        <div class="art-card">
+          <div class="art-photo" style="background-image:url('images/artist.jpg')"></div>
+          <div class="art-body">
+            <p class="art-role">Засновник · Lead Artist</p>
+            <h3 class="art-name">Євген<br/>Ковальчук</h3>
+            <p class="art-bio">11 років у татуюванні. Реалізм — його мова. Зробив понад 800 портретів, жодного кліпарту. Чекати до нього 3–4 тижні — нормально.</p>
+            <div class="art-tags">
+              <span class="art-tag">Реалізм</span>
+              <span class="art-tag">Портрети</span>
+              <span class="art-tag">Чорно-сіре</span>
+            </div>
+            <a href="https://telegram.me/znahidkawow" class="art-link">
+              Записатись до Євгена
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
         </div>
 
-        <div>
-          <p class="artist-role">Tattoo Artist</p>
-          <h3 class="artist-name">Дмитро<br/>Нілов</h3>
-          <p class="artist-bio">
-            Десять років у татуюванні — авторський реалізм, олд-скул та українські орнаменти.
-            Понад 1000 завершених проєктів, кожен — ретельна консультація та ексклюзивний ескіз.
-            Стерильне обладнання, перевірені пігменти, відеоконтент про загоєння татуювань.
-          </p>
-          <div class="artist-badges" aria-label="Спеціалізації та досвід">
-            <span class="badge highlight">10 років досвіду</span>
-            <span class="badge highlight">1000+ робіт</span>
-            <span class="badge">Реалізм</span>
-            <span class="badge">Олд-скул</span>
-            <span class="badge">Українські орнаменти</span>
-            <span class="badge">Чорно-сіре</span>
+        <div class="art-card">
+          <div class="art-photo" style="background-image:url('images/photo2.jpg')"></div>
+          <div class="art-body">
+            <p class="art-role">Senior Artist</p>
+            <h3 class="art-name">Соня<br/>Мороз</h3>
+            <p class="art-bio">Акварель і геометрія — її спеціалізація. Почала з ботанічних малюнків, перейшла в тату 7 років тому. Жодного шкодування — каже кожен клієнт.</p>
+            <div class="art-tags">
+              <span class="art-tag">Акварель</span>
+              <span class="art-tag">Геометрія</span>
+              <span class="art-tag">Мандали</span>
+            </div>
+            <a href="https://telegram.me/znahidkawow" class="art-link">
+              Записатись до Соні
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
           </div>
-          <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Записатись до Дмитра через Telegram">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            Записатись до Дмитра
-          </a>
         </div>
+
+        <div class="art-card">
+          <div class="art-photo" style="background-image:url('images/photo3.jpg')"></div>
+          <div class="art-body">
+            <p class="art-role">Artist · Blackwork</p>
+            <h3 class="art-name">Олег<br/>Тимченко</h3>
+            <p class="art-bio">Блекворк і олд-скул. 8 років практики, стажувався в Берліні. Говорить мало, але кожна лінія на місці. Вічна класика без ностальгії.</p>
+            <div class="art-tags">
+              <span class="art-tag">Блекворк</span>
+              <span class="art-tag">Олд-скул</span>
+              <span class="art-tag">Лайнворк</span>
+            </div>
+            <a href="https://telegram.me/znahidkawow" class="art-link">
+              Записатись до Олега
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1297,6 +1558,71 @@
           <h3 class="process-step">Догляд</h3>
           <p class="process-desc">Детальна інструкція по догляду. На зв'язку весь час загоєння — питання завжди відповімо.</p>
         </article>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── TESTIMONIALS ─────────────────────────────────── -->
+  <section id="reviews" class="section" aria-labelledby="reviews-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Відгуки</p>
+        <h2 class="section-title" id="reviews-heading">Що кажуть клієнти</h2>
+        <p class="section-sub">Понад 300 відгуків у Google — середня оцінка 4.9. Ось кілька останніх.</p>
+      </div>
+
+      <div class="tst-grid">
+
+        <div class="tst-card">
+          <div class="tst-stars">★★★★★</div>
+          <p class="tst-quote">"Робила портрет мами. Боялась що вийде не схоже. Євген попросив 12 фото і зробив ескіз за 2 дні. Коли побачила — заплакала. Це мистецтво."</p>
+          <div class="tst-author">
+            <div class="tst-avatar">А</div>
+            <div>
+              <div class="tst-name">Аліна Яременко</div>
+              <div class="tst-meta">Реалізм · Портрет · Київ</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tst-card">
+          <div class="tst-stars">★★★★★</div>
+          <p class="tst-quote">"Рукав від плеча до зап'ястя. Три сеанси за місяць. Перед першим сеансом все обговорили — ні одного моменту де б я не розумів що відбувається."</p>
+          <div class="tst-author">
+            <div class="tst-avatar">М</div>
+            <div>
+              <div class="tst-name">Максим Бондаренко</div>
+              <div class="tst-meta">Блекворк · Рукав · Харків</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tst-card">
+          <div class="tst-stars">★★★★★</div>
+          <p class="tst-quote">"Мандала на спині — перше моє тату. Соня дуже терпляче пояснила кожен крок. Два місяці пройшло — досі не можу надивитись. Найкраще рішення."</p>
+          <div class="tst-author">
+            <div class="tst-avatar">В</div>
+            <div>
+              <div class="tst-name">Вікторія Лісова</div>
+              <div class="tst-meta">Геометрія · Спина · Одеса</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tst-card">
+          <div class="tst-stars">★★★★★</div>
+          <p class="tst-quote">"Робив тату в чотирьох різних місцях. NOCTURNE — найкраще. Олег дивиться на шкіру і на твій стиль, а не просто малює що просять. Повернуся за рукавом."</p>
+          <div class="tst-author">
+            <div class="tst-avatar">Д</div>
+            <div>
+              <div class="tst-name">Дмитро Ільченко</div>
+              <div class="tst-meta">Олд-скул · Плечо · Дніпро</div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -1421,16 +1747,35 @@
 
   <hr class="divider" />
 
+  <!-- ─── CTA BLOCK ─────────────────────────────────── -->
+  <section class="section" aria-label="Запис на консультацію">
+    <div class="container">
+      <div class="cta-block">
+        <p class="section-label" style="text-align:center;">Готовий?</p>
+        <h2 class="section-title">Запишись на<br/>безкоштовну консультацію</h2>
+        <p class="section-sub">Обговоримо ідею, розмір, розміщення. Покажемо схожі роботи з портфоліо. Без зобов'язань — просто поговоримо.</p>
+        <div class="cta-actions">
+          <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            Написати в Telegram
+          </a>
+          <a href="tel:+380671234567" class="btn btn-ghost">+38 (067) 123-45-67</a>
+        </div>
+        <p style="margin-top:20px; font-size:.8rem; color:var(--muted);">Київ, вул. Саксаганського 14 · Пн–Сб 11:00–20:00</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── FOOTER ─────────────────────────────────────── -->
   <footer role="contentinfo">
     <div class="container">
       <div class="footer-grid">
 
         <div>
-          <div class="footer-brand-logo">NILOV<span>·</span>DMYTRO</div>
+          <div class="footer-brand-logo">NOCTURNE<span>·</span>INK</div>
           <p class="footer-brand-desc">
-            Авторські татуювання та пірсинг. Стерильно, якісно, назавжди.
-            Луцьк — запис через Telegram.
+            Преміум тату-студія в Києві. Реалізм, блекворк, геометрія, акварель.
+            3 майстри, авторські ескізи, стерильно, 9 років на ринку.
           </p>
           <div class="footer-social" aria-label="Соціальні мережі">
             <!-- Instagram -->
@@ -1459,23 +1804,21 @@
         <div>
           <p class="footer-col-title">Контакти</p>
           <ul class="footer-links">
-            <li>
-              <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener noreferrer" aria-label="Написати в Telegram">
-                Telegram: @nilov_tattoo
-              </a>
-            </li>
-            <li><a href="https://www.instagram.com/nilov.tattoo/" target="_blank">Instagram: @nilov.tattoo</a></li>
-            <li><a href="#">Луцьк</a></li>
+            <li><a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener noreferrer">Telegram: @nocturne_ink</a></li>
+            <li><a href="https://www.instagram.com/" target="_blank">Instagram: @nocturne.ink.kyiv</a></li>
+            <li><a href="tel:+380671234567">+38 (067) 123-45-67</a></li>
+            <li><a href="#">Київ, Саксаганського 14</a></li>
+            <li><a href="#">Пн–Сб: 11:00–20:00</a></li>
           </ul>
         </div>
 
       </div>
 
       <div class="footer-bottom">
-        <p class="footer-copy">&copy; 2026 Nilov Dmytro. Всі права захищені.</p>
+        <p class="footer-copy">&copy; 2026 NOCTURNE Ink Studio. Всі права захищені.</p>
         <p class="footer-badge">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Стерильно · Безпечно · Якісно
+          Стерильно · Авторськи · Назавжди
         </p>
       </div>
     </div>
