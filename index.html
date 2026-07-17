@@ -204,6 +204,26 @@
       overflow: hidden;
     }
 
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.8) 60%, var(--bg) 100%);
+    }
+
     /* Subtle diagonal lines texture */
     .hero::after {
       content: '';
@@ -334,6 +354,58 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 16px;
+    }
+
+    /* ─── Reviews ──────────────────────────────────── */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .review-card:hover { border-color: rgba(230,57,70,0.35); transform: translateY(-4px); }
+
+    .review-card-stars {
+      color: var(--red);
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+    }
+
+    .review-card-text {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .review-card-author {
+      font-family: var(--font-h);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+
+    .review-card-meta {
+      font-size: 0.78rem;
+      color: var(--muted2);
+      font-weight: 500;
     }
 
     .style-card {
@@ -915,6 +987,7 @@
         <ul class="nav-links">
           <li><a href="#styles">Стилі</a></li>
           <li><a href="#portfolio">Портфоліо</a></li>
+          <li><a href="#reviews">Відгуки</a></li>
           <li><a href="#artist">Артист</a></li>
           <li><a href="#pricing">Ціни</a></li>
         </ul>
@@ -929,6 +1002,18 @@
 
   <!-- ─── HERO ─────────────────────────────────────── -->
   <section id="hero" class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="https://images.unsplash.com/photo-1761276297688-bc67f27c2577?w=1600&q=80&auto=format&fit=crop"
+      >
+        <source src="https://videos.pexels.com/video-files/4343477/4343477-hd_1280_720_24fps.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-glow" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-inner">
@@ -961,7 +1046,7 @@
             <div class="hero-stat-label">Років досвіду</div>
           </div>
           <div>
-            <div class="hero-stat-value">3</div>
+            <div class="hero-stat-value">4</div>
             <div class="hero-stat-label">Стилі</div>
           </div>
           <div>
@@ -1093,6 +1178,39 @@
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ─── REVIEWS ────────────────────────────────────── -->
+  <section id="reviews" class="section" aria-labelledby="reviews-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Відгуки</p>
+        <h2 class="section-title" id="reviews-heading">Що кажуть клієнти</h2>
+        <p class="section-sub">Реальні враження людей, які довірили свою ідею Дмитру.</p>
+      </div>
+
+      <div class="reviews-grid">
+        <article class="review-card">
+          <div class="review-card-stars" aria-label="Оцінка 5 з 5">★★★★★</div>
+          <p class="review-card-text">"Довго шукала майстра, який відчуває портрети — знайшла Дмитра. Реалізм на плечі вийшов настільки живим, що всі питають, це фото чи тату."</p>
+          <div class="review-card-author">Анна К.<span class="review-card-meta"> · Реалізм, портрет</span></div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card-stars" aria-label="Оцінка 5 з 5">★★★★★</div>
+          <p class="review-card-text">"Хотів український орнамент, який має сенс, а не просто візерунок з інтернету. Дмитро розпитав про мою історію і намалював ескіз, який відчувається особистим."</p>
+          <div class="review-card-author">Олег П.<span class="review-card-meta"> · Українські орнаменти</span></div>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card-stars" aria-label="Оцінка 5 з 5">★★★★★</div>
+          <p class="review-card-text">"Перше тату в житті, тому дуже нервувала. Все пояснив заздалегідь, стерильність на найвищому рівні, а блекворк на передпліччі загоївся ідеально."</p>
+          <div class="review-card-author">Софія М.<span class="review-card-meta"> · Блекворк</span></div>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -1331,6 +1449,7 @@
           <ul class="footer-links">
             <li><a href="#styles">Стилі</a></li>
             <li><a href="#portfolio">Портфоліо</a></li>
+            <li><a href="#reviews">Відгуки</a></li>
             <li><a href="#artist">Артист</a></li>
             <li><a href="#process">Процес</a></li>
             <li><a href="#pricing">Ціни</a></li>
