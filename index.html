@@ -327,7 +327,8 @@
       font-size: clamp(2rem, 4vw, 2.75rem);
       font-weight: 900;
       letter-spacing: -0.03em;
-      color: var(--white);
+      color: var(--red);
+      text-shadow: 0 0 28px rgba(230,57,70,.45);
     }
     .hero-stat-value span { color: var(--red); }
 
@@ -523,12 +524,15 @@
     .portfolio-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(230,57,70,0.18), transparent 55%);
-      opacity: 0;
-      transition: opacity var(--transition);
+      background: linear-gradient(to top, rgba(13,13,13,.75) 0%, rgba(230,57,70,0.1) 45%, transparent 65%);
+      opacity: 1;
+      transition: background var(--transition);
       display: flex;
       align-items: flex-end;
       padding: 16px;
+    }
+    .portfolio-card:hover .portfolio-overlay {
+      background: linear-gradient(to top, rgba(230,57,70,.55) 0%, rgba(230,57,70,0.2) 45%, transparent 65%);
     }
 
     .portfolio-style-tag {
@@ -1419,27 +1423,27 @@
           <div class="portfolio-overlay"><span class="portfolio-style-tag">Акварель</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Олд-скул" style="background-image:url('images/photo1.jpg');background-size:cover;background-position:center;">
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Олд-скул" style="background-image:url('https://images.unsplash.com/photo-1584395630827-860eee694d7b?w=600&h=700&fit=crop&q=80&crop=entropy');background-size:cover;background-position:center;">
           <div class="portfolio-overlay"><span class="portfolio-style-tag">Олд-скул</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Реалізм" style="background-image:url('images/photo2.jpg');background-size:cover;background-position:center;">
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Реалізм" style="background-image:url('https://images.unsplash.com/photo-1611695434597-73abd1cc58c5?w=600&h=700&fit=crop&q=80&crop=faces');background-size:cover;background-position:center;">
           <div class="portfolio-overlay"><span class="portfolio-style-tag">Реалізм</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Блекворк" style="background-image:url('images/photo3.jpg');background-size:cover;background-position:center;">
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Блекворк" style="background-image:url('https://images.unsplash.com/photo-1562962230-16b9c471dbf3?w=600&h=700&fit=crop&q=80&crop=left');background-size:cover;background-position:center;">
           <div class="portfolio-overlay"><span class="portfolio-style-tag">Блекворк</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Чорно-сіре" style="background-image:url('images/photo4.jpg');background-size:cover;background-position:center;">
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Чорно-сіре" style="background-image:url('https://images.unsplash.com/photo-1583515242635-6bba9b0e7d5d?w=600&h=700&fit=crop&q=80&crop=entropy');background-size:cover;background-position:center;">
           <div class="portfolio-overlay"><span class="portfolio-style-tag">Чорно-сіре</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Геометрія" style="background-image:url('images/photo5.jpg');background-size:cover;background-position:center;">
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Геометрія" style="background-image:url('https://images.unsplash.com/photo-1590736969596-79e3bc60f14e?w=600&h=700&fit=crop&q=80&crop=entropy');background-size:cover;background-position:center;">
           <div class="portfolio-overlay"><span class="portfolio-style-tag">Геометрія</span></div>
         </div>
 
-        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Акварель" style="background-image:url('images/photo6.jpg');background-size:cover;background-position:center;">
+        <div class="portfolio-card" role="listitem" tabindex="0" aria-label="Акварель" style="background-image:url('https://images.unsplash.com/photo-1568515045052-f9a854d70bfd?w=600&h=700&fit=crop&q=80&crop=right');background-size:cover;background-position:center;">
           <div class="portfolio-overlay"><span class="portfolio-style-tag">Акварель</span></div>
         </div>
 
@@ -1451,39 +1455,6 @@
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </p>
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-  <!-- ─── REVIEWS ────────────────────────────────────── -->
-  <section id="reviews" class="section" aria-labelledby="reviews-heading">
-    <div class="container">
-      <div class="section-head">
-        <p class="section-label">Відгуки</p>
-        <h2 class="section-title" id="reviews-heading">Що кажуть клієнти</h2>
-        <p class="section-sub">Реальні враження людей, які довірили свою ідею Дмитру.</p>
-      </div>
-
-      <div class="reviews-grid">
-        <article class="review-card">
-          <div class="review-card-stars" aria-label="Оцінка 5 з 5">★★★★★</div>
-          <p class="review-card-text">"Довго шукала майстра, який відчуває портрети — знайшла Дмитра. Реалізм на плечі вийшов настільки живим, що всі питають, це фото чи тату."</p>
-          <div class="review-card-author">Анна К.<span class="review-card-meta"> · Реалізм, портрет</span></div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-card-stars" aria-label="Оцінка 5 з 5">★★★★★</div>
-          <p class="review-card-text">"Хотів український орнамент, який має сенс, а не просто візерунок з інтернету. Дмитро розпитав про мою історію і намалював ескіз, який відчувається особистим."</p>
-          <div class="review-card-author">Олег П.<span class="review-card-meta"> · Українські орнаменти</span></div>
-        </article>
-
-        <article class="review-card">
-          <div class="review-card-stars" aria-label="Оцінка 5 з 5">★★★★★</div>
-          <p class="review-card-text">"Перше тату в житті, тому дуже нервувала. Все пояснив заздалегідь, стерильність на найвищому рівні, а блекворк на передпліччі загоївся ідеально."</p>
-          <div class="review-card-author">Софія М.<span class="review-card-meta"> · Блекворк</span></div>
-        </article>
-      </div>
     </div>
   </section>
 
