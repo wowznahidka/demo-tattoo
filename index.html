@@ -1247,6 +1247,7 @@
           <li><a href="#artist">Майстри</a></li>
           <li><a href="#reviews">Відгуки</a></li>
           <li><a href="#pricing">Ціни</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
         <a href="https://telegram.me/znahidkawow" target="_blank" rel="noopener noreferrer" class="btn btn-primary nav-cta" aria-label="Записатись через Telegram">
           <!-- Telegram icon -->
@@ -1756,6 +1757,74 @@
       </p>
     </div>
   </section>
+
+  <hr class="divider" />
+
+  <!-- ─── FAQ ─────────────────────────────────────────── -->
+  <section class="section" id="faq" aria-labelledby="faq-heading">
+    <div class="container">
+      <div class="section-head">
+        <p class="section-label">Питання</p>
+        <h2 class="section-title" id="faq-heading">Часті запитання</h2>
+        <p class="section-sub">Відповідаємо чесно — без зайвих обіцянок.</p>
+      </div>
+      <div style="max-width:720px;margin:44px auto 0">
+
+        <details style="border-bottom:1px solid var(--border);padding:0" open>
+          <summary style="cursor:pointer;padding:20px 0;font-family:var(--font-h);font-size:1.05rem;font-weight:700;color:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px">
+            Боляче?
+            <span style="color:var(--red);font-size:1.3rem;flex-shrink:0;transition:transform .2s">+</span>
+          </summary>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.75;padding:0 0 20px">Залежить від зони. Ребра, лопатки і ступні — відчутніше; плечі, стегна — терпимо. Ми використовуємо знеболювальний крем за потреби, і завжди можна взяти перерву.</p>
+        </details>
+
+        <details style="border-bottom:1px solid var(--border);padding:0">
+          <summary style="cursor:pointer;padding:20px 0;font-family:var(--font-h);font-size:1.05rem;font-weight:700;color:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px">
+            Скільки гоїться?
+            <span style="color:var(--red);font-size:1.3rem;flex-shrink:0">+</span>
+          </summary>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.75;padding:0 0 20px">Поверхня — 2 тижні, глибоке загоєння — до 2–3 місяців. Повна інструкція з доглядом видається після кожного сеансу. На зв'язку весь процес — питання завжди відповідаємо.</p>
+        </details>
+
+        <details style="border-bottom:1px solid var(--border);padding:0">
+          <summary style="cursor:pointer;padding:20px 0;font-family:var(--font-h);font-size:1.05rem;font-weight:700;color:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px">
+            Чи можна принести своє фото або ескіз?
+            <span style="color:var(--red);font-size:1.3rem;flex-shrink:0">+</span>
+          </summary>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.75;padding:0 0 20px">Так, і ми навіть вітаємо — це чудова відправна точка. Але ескіз майстер малює з нуля під вашу шкіру і розмір. Готові кліпарти не переносимо — кожна робота авторська.</p>
+        </details>
+
+        <details style="border-bottom:1px solid var(--border);padding:0">
+          <summary style="cursor:pointer;padding:20px 0;font-family:var(--font-h);font-size:1.05rem;font-weight:700;color:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px">
+            Від чого залежить ціна?
+            <span style="color:var(--red);font-size:1.3rem;flex-shrink:0">+</span>
+          </summary>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.75;padding:0 0 20px">Від розміру, складності деталей і стилю. Маленьке мінімалістичне тату від 800₴. Складний рукав — від 15 000₴ за весь обсяг. На консультації завжди називаємо точну суму перед початком роботи.</p>
+        </details>
+
+        <details style="padding:0">
+          <summary style="cursor:pointer;padding:20px 0;font-family:var(--font-h);font-size:1.05rem;font-weight:700;color:#fff;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px">
+            Чи безпечно? Стерильність?
+            <span style="color:var(--red);font-size:1.3rem;flex-shrink:0">+</span>
+          </summary>
+          <p style="color:var(--muted);font-size:.9rem;line-height:1.75;padding:0 0 20px">100%. Голки одноразові, рукавички і посуд для фарб — теж. Апарат стерилізується після кожного клієнта. Дозволяємо спостерігати за підготовкою — нам нема чого приховувати.</p>
+        </details>
+
+      </div>
+    </div>
+  </section>
+<script>
+(function(){
+  document.querySelectorAll('#faq details').forEach(function(d){
+    d.addEventListener('toggle',function(){
+      var sym=d.querySelector('summary span');
+      if(sym)sym.textContent=d.open?'−':'+';
+    });
+    var sym=d.querySelector('summary span');
+    if(sym&&d.open)sym.textContent='−';
+  });
+})();
+</script>
 
   <hr class="divider" />
 
